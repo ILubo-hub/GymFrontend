@@ -1,0 +1,78 @@
+<mat-card class="full-width ">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    Crear Actividad
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="formCrear" (ngSubmit)="submitForm()" novalidate>
+
+      <section class="example-section">
+        <mat-form-field>
+          <mat-hint>Fecha</mat-hint>
+          <input matInput [matDatepicker]="fecha"  [min]="minDate" formControlName="fecha"/>
+          <mat-datepicker-toggle
+            [for]="fecha"
+            matSuffix
+
+          ></mat-datepicker-toggle>
+          <mat-datepicker #fecha></mat-datepicker>
+        </mat-form-field>
+        <mat-error *ngIf="errorHandling('fecha', 'required')">
+          La <b>fecha </b> es requerida
+        </mat-error>
+      </section>
+
+      <section class="example-section">
+        <mat-form-field>
+          <input matInput placeholder="Hora Inicio" formControlName="hora_inicial" />
+          <mat-hint>Hora de Inicio</mat-hint>
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('hora_inicial', 'required')">
+            La <b>hora inicial</b> es requerida
+          </mat-error>
+        </mat-form-field>
+      </section>
+
+      <section class="example-section">
+        <mat-form-field>
+          <input matInput placeholder="Cupo" formControlName="cupo" />
+          <mat-hint>Cupo</mat-hint>
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('cupo', 'required')">
+            El <b>cupo</b> es requerido
+          </mat-error>
+        </mat-form-field>
+      </section>
+
+      <section class="example-section">
+        <mat-form-field>
+          <mat-label>Servicio</mat-label>
+          <mat-select formControlName="servicio_id">
+            <mat-option *ngFor="let servicio of servicioList?.data" [value]="servicio.id"
+              >{{ servicio.nombre }}
+            </mat-option>
+          </mat-select>
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('servicio_id', 'required')">
+            El <b>servicio</b> es requerido
+          </mat-error>
+        </mat-form-field>
+      </section>
+
+      <section class="example-section">
+        <!-- Submit -->
+        <div class="button-wrapper">
+          <button mat-flat-button color="primary" type="reset" (click)="submitForm()">Guardar</button>
+          <button mat-flat-button color="warn" type="reset" (click)="onReset()">
+            Cancelar
+          </button>
+          <button mat-raised-button color="accent" (click)="onBack()">
+            Regresar
+          </button>
+        </div>
+      </section>
+    </form>
+  </mat-card-content>
+</mat-card>
+

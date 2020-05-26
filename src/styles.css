@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 1.2em;
+}
+.info .mat-dialog-container .mat-dialog-title {
+  background: #2196f3;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+.success .mat-dialog-container .mat-dialog-title {
+  background: rgb(28, 153, 59);
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+.warning .mat-dialog-container .mat-dialog-title {
+  background: rgb(243, 152, 33);
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+.error .mat-dialog-container .mat-dialog-title {
+  background: rgb(243, 33, 61);
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+
+

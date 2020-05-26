@@ -1,0 +1,202 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="menu">
+    <mat-menu #rootMenu="matMenu">
+      <mat-nav-list>
+        <mat-list-item>
+          <a
+            mat-list-item
+            [routerLink]="['plan']"
+            routerLinkActive="mat-active"
+          >
+            <mat-icon>apps</mat-icon>Gym</a
+          >
+        </mat-list-item>
+        <button mat-menu-item [matMenuTriggerFor]="subMenu">Usuario</button>
+        <a mat-menu-item [matMenuTriggerFor]="subMenuPL">Planes</a>
+        <a mat-menu-item [matMenuTriggerFor]="subMenuSrv">Servicios</a>
+        <a mat-menu-item [matMenuTriggerFor]="subMenuGr">Actividades Grupales</a>
+      </mat-nav-list>
+    </mat-menu>
+
+    <mat-menu #subMenu="matMenu">
+      <a
+        *ngIf="currentUser == null"
+        mat-menu-item
+        matTooltip="Crear Usuario"
+        aria-label="Crear Usuario"
+        color="accent"
+        [routerLink]="['usuario/registrar']"
+        routerLinkActive="mat-active"
+      >
+        <mat-icon>person_add</mat-icon> Crear Usuario
+      </a>
+      <a
+        *ngIf="currentUser?.user.tipo_usuario_id==1"
+        mat-menu-item
+        matTooltip="Preferencias"
+        aria-label="Preferencias"
+        [routerLink]="['usuario']"
+        color="accent"
+      >
+      <mat-icon> person_pin</mat-icon>Preferencias
+    </a>
+    <a
+    *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+    mat-menu-item
+    matTooltip="Clientes"
+    aria-label="Clientes"
+    [routerLink]="['usuariocli']"
+    color="accent"
+  >
+  <mat-icon> person_pin</mat-icon>Clientes
+</a>
+    </mat-menu>
+    <mat-menu #subMenuGr="matMenu">
+      <a
+        *ngIf="currentUser == null"
+        mat-menu-item
+        matTooltip="Crear Usuario"
+        aria-label="Crear Usuario"
+        color="accent"
+        [routerLink]="['usuario/registrar']"
+        routerLinkActive="mat-active"
+      >
+        <mat-icon>person_add</mat-icon> Ver Actividades
+      </a>
+      <a
+        *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+        mat-menu-item
+        matTooltip="Administrar"
+        aria-label="Administrar"
+        [routerLink]="['actividad']"
+        color="accent"
+      >
+      <mat-icon> person_pin</mat-icon>Administrar
+    </a>
+    <a
+    *ngIf="currentUser?.user.tipo_usuario_id==3"
+    mat-menu-item
+    matTooltip="Actividades"
+    aria-label="Actividades"
+    [routerLink]="['actividadus']"
+    color="accent"
+  >
+  Actividades
+</a>
+    </mat-menu>
+    <mat-menu #subMenuPL="matMenu">
+        <a
+          mat-menu-item
+          matTooltip="Planes"
+          aria-label="Planes"
+          color="accent"
+          [routerLink]="['plan']"
+          routerLinkActive="mat-active"
+        >
+          <mat-icon>person_add</mat-icon> Ver Planes
+        </a>
+        <a
+          *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+          mat-menu-item
+          matTooltip="Pagar"
+          aria-label="Pagar"
+          [routerLink]="['plan/pay/']"
+          color="accent"
+        >
+        <mat-icon>euro_symbol</mat-icon>Pagar Plan
+      </a>
+
+      <a
+      *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+      mat-menu-item
+      matTooltip="Pagos"
+      aria-label="Pagos"
+      [routerLink]="['plan/pg']"
+      color="accent"
+    >
+    <mat-icon> done</mat-icon>Pagos Realizados
+  </a>
+
+  <a
+  *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+  mat-menu-item
+  matTooltip="Pagos"
+  aria-label="Pagos"
+  [routerLink]="['plan/pend']"
+  color="accent"
+>
+<mat-icon> cancel</mat-icon>Pagos Pendientes
+</a>
+      </mat-menu>
+
+      <mat-menu #subMenuSrv="matMenu">
+        <a
+          mat-menu-item
+          matTooltip="Ver servicios"
+          aria-label="Ver servicios"
+          color="accent"
+          [routerLink]="['servicio']"
+          routerLinkActive="mat-active"
+        >
+           Ver Servicios
+        </a>
+        <a
+          *ngIf="currentUser?.user.tipo_usuario_id==1 || currentUser?.user.tipo_usuario_id==2"
+          mat-menu-item
+          matTooltip="Eliminados"
+          aria-label="Eliminados"
+          [routerLink]="['serviciotr']"
+          color="accent"
+        >
+        <mat-icon>cancel</mat-icon>Servicios Eliminados
+      </a>
+      </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="rootMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    Gimnasio
+    <span class="example-spacer"></span>
+
+    <span class="example-fill-remaining-space"></span>
+    <div>
+      <mat-chip-list aria-label="Usuario">
+        <mat-chip *ngIf="currentUser?.user">
+          <mat-icon>assignment_ind</mat-icon>{{ currentUser.user?.nombre }}
+          <button
+          mat-mini-fab
+          matTooltip="Actualizar App"
+          aria-label="Actualizar App"
+          color="none"
+          (click)="actualizarApp(currentUser?.user.id)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        </mat-chip>
+        <a
+          *ngIf="currentUser == null"
+          mat-chip
+          matTooltip="Login"
+          aria-label="Login"
+          color="accent"
+          [routerLink]="['usuario/login']"
+          routerLinkActive="mat-active"
+        >
+          <mat-icon>input</mat-icon>
+        </a>
+        <a
+          *ngIf="currentUser?.user"
+          mat-chip
+          matTooltip="Logout"
+          aria-label="Logout"
+          color="accent"
+          (click)="logout()"
+          routerLinkActive="mat-active"
+        >
+          <mat-icon>power_settings_new</mat-icon>
+        </a>
+      </mat-chip-list>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

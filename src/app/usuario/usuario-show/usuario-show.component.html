@@ -1,0 +1,75 @@
+<mat-card class="example-card" *ngIf="datos">
+  <mat-card-header>
+    <mat-card-title>
+      {{ usuario?.nombre }} {{ usuario?.apellidos }}</mat-card-title
+    >
+    <mat-card-subtitle>
+      <b>Teléfono: </b>
+      {{ usuario?.telefono }}
+      | <b>Email: </b> {{ usuario?.email }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <br />
+      <mat-divider></mat-divider>
+      <b>Identidad: </b>
+      {{usuario?.numero_cedula}}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Fecha Nacimiento: </b>
+      {{ usuario?.fecha_nacimiento }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Tipo Usuario: </b>
+      {{
+        usuario?.tipo_usuario_id == 1
+          ? "Administrador"
+          : usuario?.tipo_usuario_id == 2
+          ? "Cliente"
+          : "Usuario"
+      }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Sexo: </b>
+      {{ usuario?.sexo }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Plan Registrado: </b>
+      {{ usuario?.nombre_plan }}
+      <br />
+
+      <b>Descripción </b>
+      {{ usuario?.descripcion }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Precio </b>
+      {{ usuario?.precio }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Fecha Inscripción </b>
+      {{ usuario?.fecha_inicio }}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Fecha de Pago </b>
+      {{ usuario?.fecha_final }}
+      <br />
+      <mat-divider></mat-divider>
+
+
+    </p>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="regresar()">
+      <mat-icon color="basic" class="mat-18">skip_previous</mat-icon>Regresar
+    </button>
+  </mat-card-actions>
+</mat-card>

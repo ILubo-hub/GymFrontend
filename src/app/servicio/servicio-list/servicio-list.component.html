@@ -1,0 +1,73 @@
+<mat-card class="full-width ">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    Servicios
+    <a
+    *ngIf="currentUser.user.tipo_usuario_id===1 || currentUser.user.tipo_usuario_id===2"
+      mat-mini-fab
+      matTooltip="Crear Plan"
+      aria-label="Crear Plan"
+      [routerLink]="['servicio/crear']"
+      routerLinkActive="mat-active"
+      color="accent"
+    >
+      <mat-icon>add</mat-icon>
+
+    </a>
+  </mat-card-title>
+  <mat-card-content>
+    <div
+      class="mat-elevation-z8"
+      *ngIf="dataSource"
+      matSort
+      matSortStart="desc"
+    >
+      <table mat-table [dataSource]="dataSource" class="full-width-table">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <!-- Nombre lugar -->
+          <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo_servicio">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Servicio</th>
+          <td mat-cell *matCellDef="let element">{{element.tipo_servicio}}</td>
+        </ng-container>
+        <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button
+              *ngIf="currentUser.user.tipo_usuario_id===1 || currentUser.user.tipo_usuario_id===2"
+                mat-mini-fab
+                matTooltip="Detalle Plan"
+                aria-label="Detalle Plan"
+                color="accent"
+                (click)="delServicio(element.id)"
+              >
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        #paginator
+        [length]="dataSource?.data.length"
+        [pageIndex]="0"
+        [pageSize]="50"
+        [pageSizeOptions]="[2, 25, 50, 100, 250]"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

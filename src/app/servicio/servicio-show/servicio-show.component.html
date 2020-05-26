@@ -1,0 +1,31 @@
+<mat-card class="example-card" *ngIf="datos">
+    <mat-card-header>
+      <mat-card-title> {{servicio?.nombre}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <b>Precio: </b>
+        {{servicio?.nombre}}
+        <br />
+        <mat-divider></mat-divider>
+
+        <b>Descripción: </b>
+        {{servicio?.descripcion}}
+      </p>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <b>Actividades</b>
+        <mat-list-item *ngFor="let servicio of servicio?.servicios">
+          {{servicio.nombre}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="submitForm()">Eliminar</button>
+      <button mat-raised-button color="primary" (click)="regresar()">
+        <mat-icon color="basic" class="mat-18">skip_previous</mat-icon>Regresar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+

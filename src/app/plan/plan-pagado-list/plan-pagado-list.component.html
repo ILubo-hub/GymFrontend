@@ -1,0 +1,51 @@
+<mat-card class="full-width ">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    Pagos realizados
+  </mat-card-title>
+  <mat-card-content>
+    <div
+      class="mat-elevation-z8"
+      *ngIf="dataSource"
+      matSort
+      matSortStart="desc"
+    >
+      <table mat-table [dataSource]="dataSource" class="full-width-table">
+        <ng-container matColumnDef="cliente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <!-- Nombre lugar -->
+          <td mat-cell *matCellDef="let element">{{element.usuario.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha_pago}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let element">{{element.monto}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="usuario_registra_id">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let element">{{element.usuario_registra_id}}</td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        #paginator
+        [length]="dataSource?.data.length"
+        [pageIndex]="0"
+        [pageSize]="50"
+        [pageSizeOptions]="[2, 25, 50, 100, 250]"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

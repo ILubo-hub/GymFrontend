@@ -1,0 +1,30 @@
+<mat-card class="example-card" *ngIf="datos">
+  <mat-card-header>
+    <mat-card-title>Actividad</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <b>Fecha: </b>
+      {{actividad?.fecha}}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Hora Inicio: </b>
+      {{actividad?.hora_inicial}}
+
+    <br />
+    <mat-divider></mat-divider>
+    <b>Hora Final: </b>
+    {{actividad?.hora_final}}
+
+  </p>
+  <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="submitForm()">Ingresar</button>
+    <button mat-raised-button color="primary" (click)="regresar()">
+      <mat-icon color="basic" class="mat-18">skip_previous</mat-icon>Regresar
+    </button>
+  </mat-card-actions>
+</mat-card>

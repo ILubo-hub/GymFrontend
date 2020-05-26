@@ -1,0 +1,74 @@
+<mat-card class="full-width ">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    Crear Plan
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="formCrear" (ngSubmit)="submitForm()" novalidate>
+      <section class="example-section">
+        <!-- Nombre aplicación -->
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-icon matSuffix>assignment</mat-icon>
+          <mat-hint>Nombre Plan</mat-hint>
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('nombre', 'required')">
+            El <b>nombre</b> es requerido
+          </mat-error>
+        </mat-form-field>
+      </section>
+      <section class="example-section">
+        <mat-form-field class="example-full-width">
+          <textarea
+            placeholder="Descripción"
+            formControlName="descripcion"
+            matInput
+          ></textarea>
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('descripcion', 'required')">
+            La <b>descripción</b> es requerida
+          </mat-error>
+          ></mat-form-field
+        >
+      </section>
+      <section class="example-section">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Precio" formControlName="precio" />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('precio', 'required')">
+            El <b>precio</b> es requerido
+          </mat-error>
+        </mat-form-field>
+      </section>
+
+      <section class="example-section">
+        <mat-label>Servicios</mat-label>
+      </section>
+      <section class="example-section">
+        <div formArrayName="servicios">
+          <div *ngFor="let servicio of servicios.controls; index as i">
+            <mat-checkbox
+              [formControlName]="i"
+              [value]="servicioList.data[i]?.id"
+              (change)="onCheckChange($event)"
+              >{{ servicioList.data[i]?.nombre }}</mat-checkbox
+            >
+          </div>
+        </div>
+      </section>
+      <section class="example-section">
+        <!-- Submit -->
+        <div class="button-wrapper">
+          <button mat-flat-button color="primary">Guardar</button>
+          <button mat-flat-button color="warn" type="reset" (click)="onReset()">
+            Cancelar
+          </button>
+          <button mat-raised-button color="accent" (click)="onBack()">
+            Regresar
+          </button>
+        </div>
+      </section>
+    </form>
+  </mat-card-content>
+</mat-card>

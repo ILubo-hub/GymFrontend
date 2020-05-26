@@ -1,0 +1,27 @@
+<mat-card class="example-card" *ngIf="datos">
+  <mat-card-header>
+    <mat-card-title> {{plan?.nombre}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <b>Descripción: </b>
+      {{plan?.descripcion}}
+      <br />
+      <mat-divider></mat-divider>
+
+      <b>Precio: </b>
+      {{plan?.precio}}
+      <br />
+      <mat-divider></mat-divider>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+      <button mat-raised-button color="warn" type="reset" (click)="submitForm()">Pagar</button>
+    <button mat-raised-button color="primary" (click)="regresar()">
+      <mat-icon color="basic" class="mat-18">skip_previous</mat-icon>Regresar
+    </button>
+  </mat-card-actions>
+</mat-card>
+
